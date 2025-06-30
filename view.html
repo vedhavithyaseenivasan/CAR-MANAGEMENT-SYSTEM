@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Customers</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        body{
+            background-image: url('pro1.webp');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="fetchCustomers()">Fetch Customers</button>
+    
+    <div id="customerList">
+        <!-- Customer data will be displayed here -->
+    </div>
+
+    <script>
+        function fetchCustomers() {
+            fetch('http://localhost:3001/select')
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Fetched data:', data); // Log the data to console
+                    displayCustomers(data); // Call function to display customers
+                })
+                .catch(error => {
+                    console.error('Error fetching customers:', error);
+                    alert('Error fetching customers. Please try again later.');
+                });
+        }
+
+        function displayCustomers(customers) {
+            const customerListDiv = document.getElementById('customerList');
+            customerListDiv.innerHTML = ''; // Clear previous content
+
+            if (customers.length === 0) {
+                customerListDiv.innerHTML = '<p>No customers found.</p>';
+            } else {
+                const table = document.createElement('table');
+                table.innerHTML = `
+                    <tr>
+                        <th>Customer ID</th>
+                        <th>Name</th>
+                        <th>Mobile</th>
+                        <th>Address</th>
+                        <th>Car ID</th>
+                        <th>Service ID</th>
+                        <th>Service Start Date</th>
+                        <th>Service End Date</th>
+                        <th>Loan No</th>
+                        <th>Loan ID</th>
+                    </tr>
+                `;
+
+                customers.forEach(customer => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${customer.customerId}</td>
+                        <td>${customer.customerName}</td>
+                        <td>${customer.customerMobile}</td>
+                        <td>${customer.customerAddress}</td>
+                        <td>${customer.carId}</td>
+                        <td>${customer.serviceId}</td>
+                        <td>${customer.serviceStartDate}</td>
+                        <td>${customer.serviceEndDate}</td>
+                        <td>${customer.loanno}</td>
+                        <td>${customer.loanid}</td>
+                    `;
+                    table.appendChild(row);
+                });
+
+                customerListDiv.appendChild(table);
+            }
+        }
+    </script>
+</body>
+</html>

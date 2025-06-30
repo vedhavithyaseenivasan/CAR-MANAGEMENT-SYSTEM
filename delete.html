@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+
+        }
+        form {
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        form div {
+            margin-bottom: 10px;
+        }
+        label {
+            display: inline-block;
+            width: 150px;
+        }
+        input[type="text"], input[type="date"] {
+            width: 200px;
+            padding: 5px;
+        }
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: BLUE;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+BODY
+{
+background-image:url("frm.jpg");
+
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Customer Management</h1>
+<form action="http://localhost:3001/delete" method="post">
+            <h2>Delete Customer</h2>
+            <div>
+                <label for="customerIdDelete">Customer ID:</label>
+                <input type="text" id="customerIdDelete" name="customerIdDelete" required>
+            </div>
+            <input type="submit" value="Delete">
+        </form>
+
+      
+        <div id="customers"></div>
+    </div>
+    <script>
+        async function fetchCustomers() {
+            const response = await fetch('/select');
+            const data = await response.text();
+            document.getElementById('customers').innerHTML = data;
+        }
+    </script>
+</body>
+</html>
+
+
