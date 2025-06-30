@@ -53,7 +53,7 @@ In today’s fast-paced world, managing vehicles efficiently is essential for bu
 - `Loan(loan_no, cus_id, car_model, mon_loan)`
 
 ### Sample ER Diagram:
-> Refer to the project report for a detailed ER model.
+> Refer to the Report Folder which contains the documentation of a project for a detailed ER model.
 
 ---
 
