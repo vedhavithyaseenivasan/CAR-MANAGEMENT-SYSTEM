@@ -96,8 +96,7 @@ WHERE car_model = (
 - 1.Clone the repository:
   ``` bash
   git clone https://github.com/vedhavithyaseenivasan/CAR_MANAGEMENT-SYSTEM.git
-```
-
+  ```
 - 2.Open the SQL scripts in any DBMS tool (e.g., Oracle, MySQL, PostgreSQL).
 
 - 3.Execute the DDL queries to create tables.
